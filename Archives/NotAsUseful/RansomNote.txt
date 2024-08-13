@@ -1,0 +1,101 @@
+Python Solution
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        block = list(ransomNote)
+        die = list(magazine)
+        count = 0
+        k = 0
+        test = [0 for j in block]
+        testnext = 1
+
+        for count in range(len(die)):
+            for i in range(len(block)):
+                if die[count] == block[i]:
+                    test[k] = 1
+                    die[count] = None
+                    block[i] = None
+                    k+=1
+                    break
+                elif test[i] != 1:
+                    test[i] = 0
+            if not '0' in str(test):
+                break
+        
+        for testnext in range(len(block)):
+            if block[testnext] == None:
+                continue
+            else:
+                block[testnext] = '-1'
+
+        if '0' in str(test):
+            return False
+        elif not '0' in str(test) and not '-1' in str(block): 
+            return True
+                
+
+C Solution:
+    size_t size_die = sizeof(die) / sizeof(die[0]);
+    size_t size_block = sizeof(block) / sizeof(block[0]);
+
+            if(count3 == size_block){
+            return true;
+        } else {
+            return false;
+        }
+
+Wrong Algortithm
+bool canConstruct(char * ransomNote, char * magazine){
+
+    char * die = magazine;
+    char * block = ransomNote;
+    int count1 = 0;
+    int count2 = 0;
+    int count3 = 0;
+
+    int size_die = strlen(die);
+    int size_block = strlen(block);
+    //char *test = calloc(strlen(block)+1, sizeof(char)); //strlen doesn't count the null pointer that is why + 1 is used.
+    char *test = (char*)malloc((strlen(block)+1)*sizeof(char));
+
+    for(;count1 <= size_die; count1++)
+    {
+        for(;count2 <= size_block; count2++)
+        {
+            if(die[count1] == block[count2])
+            {
+                test[count2]=(char*)malloc(sizeof(char));
+                if (test[count2] == NULL){
+                    printf("Error allocating memory ");
+                } else {
+                    sprintf(test[count2], "T");
+                    //strcpy(test[count2],"T");
+                    //test[count2] = strdup("T");
+                    //test[count2] = "T";
+                }
+                die[count1] = NULL;
+               
+                count3++;
+            } else {
+                continue;
+            }
+        }
+    }
+    
+    printf("die %s , block %s, test %s", die, block, test);
+
+        for(int x=0;x<=strlen(test);x++){
+            if(test[x] != "T"){
+                free(test);
+                return false;
+            } else if (test[x] == "T") {
+                continue;
+            } else if (x == strlen(test)){
+                free(test);
+                return true;
+            }
+        }
+    
+    printf("The logic failed.");
+    return false;
+
+}

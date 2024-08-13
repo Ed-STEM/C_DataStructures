@@ -1,0 +1,83 @@
+Python
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+
+        bj = head
+        while bj and bj.next:
+            head = head.next
+            bj = bj.next.next
+               
+        print (head)
+        return head
+
+
+C
+struct ListNode* middleNode(struct ListNode* head){
+
+    struct ListNode* slow = head;
+    struct ListNode* fast = head;
+
+    while (fast != NULL && fast->next != NULL  )
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+
+    }
+
+    return slow;
+}
+
+
+
+
+
+
+Cannot Turn LinkedList into List...
+Must use terminator
+Must determine half way point in the loop...
+
+
+        notlinked = []
+        quantity =0
+        d=0
+
+        while(head):
+            notlinked.append(int(head.val))
+            head = head.next
+            quantity += 1
+        print(quantity)
+        if quantity % 2 == 0:
+            i = quantity / 2
+            answer = [0 for y in range(int(i))]
+        elif quantity % 2 != 0:
+            i = (quantity // 2) + 1
+            answer = [0 for y in range(int(i))]
+        else:
+            print("There was an error!")
+
+        print(i)
+        print(quantity)
+        print(notlinked)
+        print(answer)
+        #i -= 1
+        quantity -= 1
+        for i in range(quantity-1):
+            answer[d]= notlinked[int(i+2)] 
+            d += 1
+
+        print (answer)
+        return answer
+
+
+CompSci Voodoo
+        bj = head
+        while bj and bj.next:
+            head = head.next
+            bj = bj.next.next
+               
+        print (head)
+        return head

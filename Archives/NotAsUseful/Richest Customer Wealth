@@ -1,0 +1,34 @@
+ANSWER IN C
+int maximumWealth(int** accounts, int accountsSize, int* accountsColSize){
+
+    int *sum = malloc (sizeof(int) * accountsSize);
+    int max = 0;
+
+    for(int i = 0; i < accountsSize; i++){
+        int add = 0;
+        for(int j = 0; j < accountsColSize[i]; j++){
+            sum[i] = add + accounts[i][j];
+            add += accounts[i][j];
+        }           
+        if (&sum[i] != NULL && sum[i] >= max){
+            max = sum[i];
+        } 
+    }
+
+    *accountsColSize = accountsSize;
+    free(sum);
+    return max;
+
+}
+
+
+
+ANSWER IN PYTHON3
+class Solution:
+    def maximumWealth(self, accounts: List[List[int]]) -> int:
+        i = 0
+        ptr = [0 for y in accounts]
+        for nums in accounts:
+            ptr[i] = sum(nums)
+            i += 1
+        return max(ptr)
